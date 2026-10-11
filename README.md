@@ -3,6 +3,11 @@
 为 Omarchy 生成一张 **1920×1080 快捷键壁纸**（Tokyo Night 配色），数据来源是
 本机 `omarchy menu keybindings --print` 的**实时生效绑定**，而非网上的通用速查表。
 
+[![壁纸预览](docs/preview.png)](docs/preview.png)
+
+> 上图为在本机生成的示例，点击可查看 1920×1080 原图（GitHub 页面内显示的是缩放后的版本）。
+> 你生成的实际内容取决于你自己的实时绑定。
+
 ## 用法
 
 ```bash
@@ -38,6 +43,21 @@ fc-list :lang=zh | grep -qi noto
 - **自动布局**：4 列均衡分组（DP 最小化最高列）、字号自动回退（13→9pt）、
   line-spacing 自适应，保证不超出画布也不重叠。
 - **随系统更新**：Omarchy 升级或你改了 `~/.config/hypr/bindings.lua` 后重新跑一次即可。
+
+## 预览图
+
+README 顶部的 `docs/preview.png` 就是这样生成出来的。想更新它：
+
+```bash
+./keybindings-wallpaper.py --output docs/preview.png
+```
+
+脚本输出为 16-bit PNG（约 1 MB），仓库里的预览图存为 8-bit 以减小体积——浏览器
+本来也只按 8-bit 显示，视觉上无差别。需要更小（约 160 KB）可再量化调色板：
+
+```bash
+magick docs/preview.png -colors 256 -strip docs/preview.png
+```
 
 ## 定制
 
